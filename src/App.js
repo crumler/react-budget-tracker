@@ -5,6 +5,8 @@ import Remaining from './components/Remaining';
 import ExpenseList from './components/ExpenseList';
 import AddExpenseForm from './components/AddExpenseForm';
 
+import './App.css';
+
 function App() {
   return (
     <div className="container">
@@ -26,7 +28,7 @@ function App() {
           <ExpenseList />
         </div>
       </div>
-      <h3 className="mt-3">Add Expense</h3>
+      <h3 className="mt-3 text-center">Add Expense</h3>
       <div className="row mt-3">
         <div className="col-sm">
           <AddExpenseForm />
