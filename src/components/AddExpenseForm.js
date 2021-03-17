@@ -1,15 +1,37 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddExpenseForm = () => {
+    const { dispatch } = useContext(AppContext);
+
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
 
     const onSubmit = (event) => {
+        event.preventDefault();
 
+        const expense = {
+            id: uuidv4(),
+            name: name,
+            cost: parseInt(cost)
+        };
+        
+        if (isNaN(cost)) {
+            alert('Cost MUST be a number!');
+            } else {
+            dispatch({
+            type: 'ADD_EXPENSE',
+            payload: expense
+        })};
+
+        setName('');
+        setCost('');
     };
 
     return(
         <form onSubmit={onSubmit}>
+            {isNaN(cost) ? <div class="alert alert-danger" role="alert">Cost MUST be a number!</div> : null}
             <div className="row">
                 <div className="col-sm">
                     <label for="name">Name</label>
